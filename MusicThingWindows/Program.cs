@@ -8,6 +8,7 @@ namespace MusicThingWindows
         {
             Server server = new();
             server.Start();
+            Console.WriteLine("Websocket Server started.\nPress enter to close.");
             Console.Read();
         }
     }

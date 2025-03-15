@@ -10,3 +10,7 @@ The Resonite public folder for MusicThing is: `resrec:///U-1UzdhEAL6IK/R-EC73655
 
 ## Installation
 (TODO)
+
+## Building
+The project was build with
+`dotnet publish -c Release -r win-x64 --self-contained false -o ./publish`
