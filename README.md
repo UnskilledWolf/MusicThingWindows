@@ -9,7 +9,9 @@ The Resonite public folder for MusicThing is: `resrec:///U-1UzdhEAL6IK/R-EC73655
 > The code is feature complete for now, but in need of testing and a big cleanup
 
 ## Installation
-(TODO)
+Download the latest file and run `MusicThingWindows.exe`
+
+Pressing enter on the terminal will close the server.
 
 ## Building
 The project was build with

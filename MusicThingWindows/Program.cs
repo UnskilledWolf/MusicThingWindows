@@ -10,6 +10,7 @@ namespace MusicThingWindows
             server.Start();
             Console.WriteLine("Websocket Server started.\nPress enter to close.");
             Console.Read();
+            server.Stop();
         }
     }
 }
