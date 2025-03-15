@@ -1,6 +1,8 @@
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Media.Control;
+using Windows.Storage;
+using Windows.Storage.Streams;
 
 namespace MusicThingWindows
 {
@@ -46,6 +48,31 @@ namespace MusicThingWindows
             }
             else
                 return null;
+        }
+
+        public async Task<byte[]> GetCoverArt()
+        {
+            if (session != null)
+            {
+                GlobalSystemMediaTransportControlsSessionMediaProperties mediaProperties = await session.TryGetMediaPropertiesAsync();
+                IRandomAccessStreamReference thumbnailStreamReference = mediaProperties.Thumbnail;
+                return await ConvertToByteArrayAsync(thumbnailStreamReference);
+            }
+            else
+                return [];
+        }
+
+        private static async Task<byte[]> ConvertToByteArrayAsync(IRandomAccessStreamReference streamReference)
+        {
+            if (streamReference == null)
+                return [];
+
+            using IRandomAccessStream stream = await streamReference.OpenReadAsync();
+            using var reader = new DataReader(stream);
+            await reader.LoadAsync((uint)stream.Size);
+            byte[] buffer = new byte[stream.Size];
+            reader.ReadBytes(buffer);
+            return buffer;
         }
     }
 }
